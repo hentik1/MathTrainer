@@ -22,7 +22,7 @@ function Menu() {
                 setModes[i](!modes[i]);
                 setSelected(modesText[i]);
             }
-        }
+        };
     }
 
     const setFalse = () => {
