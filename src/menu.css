@@ -1,0 +1,30 @@
+.menu {
+    background-color: rgb(24, 61, 61);
+    padding: 10px;
+    border-top-left-radius: 5%;
+    border-bottom-right-radius: 5%;
+    width: 25vw;
+    height: 25vh;
+}
+
+.all {
+    padding: 10px;
+    font-size: 20px;
+}
+
+.all:hover {
+    cursor: pointer;
+    color: rgb(92, 131, 116);
+}
+
+.selected {
+    color: rgb(92, 131, 116);
+}
+
+.record {
+    position: absolute;
+    left: 20vw;
+    top: 2vh;
+    width: 20vw;
+    height: 20vh;
+}
