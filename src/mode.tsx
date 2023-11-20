@@ -1,17 +1,25 @@
-import React, { useEffect } from 'react';
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import './mode.css';
-import { modeProps } from './interface';
+import { modeProps, MenuProps } from './interface';
 import Config from './config';
 
-
-function Mode({ selected }: modeProps) {
-
+function Mode({ selected, updateMenu }: modeProps & MenuProps) {
     const [clicked, setClicked] = useState(false);
+    const [gamemode, setGameMode] = useState("");
 
-    const handleClick = () => {
+    const handleSurv = () => {
         setClicked(!clicked);
+        updateMenu(false);
+        setGameMode("survival");
     }
+
+    const handleTime = () => {
+        setClicked(!clicked);
+        updateMenu(false);
+        setGameMode("time");
+    }
+
+
 
     return (
         <>
@@ -21,15 +29,15 @@ function Mode({ selected }: modeProps) {
                 </div>
             </div>
             <div className={clicked ? "wrapper hidden" : "wrapper"}>
-                <div className="time">
+                <div className="time" onClick={handleTime}>
                     Time Control
                 </div>
-                <div className="surv" onClick={handleClick}>
+                <div className="surv" onClick={handleSurv}>
                     Survival
                 </div>
             </div>
 
-            {clicked ? <Config selected={selected} /> : null}
+            {clicked ? <Config selected={selected} gamemode={gamemode} /> : null}
         </>
     );
 }

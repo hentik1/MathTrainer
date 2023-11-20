@@ -23,7 +23,7 @@
     z-index: 1;
     display: flex;
     justify-content: center;
-    align-items: end;
+    align-items: flex-end;
 }
 
 .header2 {
@@ -59,15 +59,16 @@
 }
 
 .wrapper>div:hover {
-    background-color: rgb(92, 131, 116);
+    background-color: rgb(147, 177, 166);
+    transition: 0.2s;
 }
 
-.test {
+.modeWrapper {
     width: 40vw;
-    height: 50vh;
+    height: 80vh;
     position: absolute;
     left: 30vw;
-    top: 25vh;
+    top: 10vh;
     display: flex;
     align-items: center;
     justify-content: space-evenly;
@@ -81,10 +82,9 @@
 .input,
 .output {
     width: 25vw;
-    height: 1vh;
-    font-size: 5vw;
+    height: 10vh;
+    font-size: 10vh;
     text-align: center;
-    margin-bottom: 20vh;
 }
 
 .score {
@@ -153,4 +153,12 @@
 
 .quit:hover {
     color: lightcoral;
+}
+
+.timer {
+    background-color: lightcoral;
+    font-family: sans-serif;
+    font-size: 5vh;
+    text-align: center;
+    vertical-align: middle;
 }

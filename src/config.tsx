@@ -2,9 +2,10 @@ import React from 'react';
 import { useState } from 'react';
 import './mode.css';
 import Survival from './survival';
-import { modeProps } from './interface';
+import Time from './time';
+import { modeProps, GameModeProps } from './interface';
 
-function Config({ selected }: modeProps) {
+function Config({ selected, gamemode }: modeProps & GameModeProps) {
 
     const [clicked, setClicked] = useState(false);
     const [max, setMax] = useState(0);
@@ -12,23 +13,25 @@ function Config({ selected }: modeProps) {
     const [medium, setMedium] = useState(false);
     const [hard, setHard] = useState(false);
 
+    const mode = gamemode;
+    const surv = <Survival max={max} selected={selected} />;
+    const time = <Time max={max} selected={selected} />;
 
     const handleEasy = () => {
-        setMax(9);
+        setMax(16);
         setEasy(true);
         setClicked(true);
     }
     const handleMedium = () => {
-        setMedium(true)
-        setClicked(true);
         setMax(99);
+        setMedium(true)
+        setClicked(true)
     }
     const handleHard = () => {
+        setMax(999);
         setHard(true);
         setClicked(true);
-        setMax(999);
     }
-
 
     return (
         <>
@@ -43,9 +46,9 @@ function Config({ selected }: modeProps) {
                     Hard
                 </div>
             </div>
-            {easy ? <Survival max={max} selected={selected} /> : null}
-            {medium ? <Survival max={max} selected={selected} /> : null}
-            {hard ? <Survival max={max} selected={selected} /> : null}
+            {easy ? easy && mode === "survival" ? surv : time : null}
+            {medium ? medium && mode === "survival" ? surv : time : null}
+            {hard ? hard && mode === "survival" ? surv : time : null}
         </>
     );
 }

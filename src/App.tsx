@@ -1,11 +1,17 @@
-import React from 'react';
-import './App.css';
+import React, { useState } from 'react';
+import './app.css';
 import Menu from './menu';
 import Settings from './settings';
+import Record from './record';
 
 function App() {
+
   return (
-    <Menu />
+    <>
+      <Menu />
+      <Settings />
+      <Record />
+    </>
   );
 }
 

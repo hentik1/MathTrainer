@@ -6,4 +6,52 @@ body {
   color: white;
   font-family: sans-serif;
   cursor: default;
+  overflow: hidden;
+}
+
+.menu {
+  position: absolute;
+  left: 0%;
+  top: 0%;
+  background-color: rgb(24, 61, 61);
+  padding: 10px;
+  width: 15%;
+  height: 100vh;
+}
+
+.menuHeader {
+  font-size: 2rem;
+  font-weight: 900;
+  padding: 10px;
+}
+
+.all {
+  padding: 10px;
+  font-size: 1.6rem;
+  margin: 5px;
+}
+
+.all:hover {
+  cursor: pointer;
+  color: rgb(92, 131, 116);
+}
+
+.selected {
+  color: rgb(92, 131, 116);
+}
+
+.record {
+  position: absolute;
+  left: 90vw;
+  top: 2vh;
+  width: 10vw;
+  height: 20vh;
+}
+
+.settings {
+  position: absolute;
+  left: 80vw;
+  top: 2vh;
+  width: 10vw;
+  height: 20vh;
 }

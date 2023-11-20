@@ -1,22 +1,28 @@
-import React, { useState, useEffect, useMemo, } from 'react';
-import './mode.css';
-import { evaluate } from 'mathjs';
-import Lose from './lose';
-import { isValidKey, selectedMode, periodConvert, symbolConvert, isValidInput } from './util';
+import React from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import { configProps } from './interface';
+import { evaluate } from 'mathjs';
+import { isValidKey, selectedMode, periodConvert, symbolConvert, isValidInput } from './util';
+import Lose from './lose';
+import useCountdown from './util';
 
 
-function Survival({ max, selected }: configProps) {
+function Time({ max, selected }: configProps) {
+
     const [inp, setInp] = useState('');
     const [score, setScore] = useState(0);
     const [lost, setLost] = useState(false);
 
-    //const mode = selectedMode(selected);
-
-    const mode = useMemo(() => selectedMode(selected), []);
-
+    const mode = selectedMode(selected);
     const [out, setOut] = useState(mode(max));
 
+    const { secLeft, start } = useCountdown();
+    const TIME = 60;
+    useMemo(() => start(TIME), []);
+    setTimeout(() => {
+        setInp("");
+        setLost(true);
+    }, TIME * 1000);
 
     useEffect(() => {
         const handleKey = (event: KeyboardEvent) => {
@@ -34,7 +40,8 @@ function Survival({ max, selected }: configProps) {
                     setOut(mode(max));
                     setScore((prevScore) => prevScore + 1);
                 } else {
-                    setLost(true);
+                    setInp("");
+                    setOut(mode(max));
                 }
             } else if (inp.length < 7) {
                 setInp((prevInp) => prevInp);
@@ -47,9 +54,24 @@ function Survival({ max, selected }: configProps) {
         };
     },);
 
+    const style1 = {
+        width: `${40 * (secLeft / TIME)}vw`,
+        height: "6vh",
+        backgroundColor: "lightgreen",
+        transition: "0.5s",
+    }
+
+    const style2 = {
+        width: `${40 * (secLeft / TIME)}vw`,
+        height: "6vh",
+        backgroundColor: "red",
+        transition: "0.5s",
+    }
+
     return (
         <>
             <div className={lost ? "modeWrapper hidden" : "modeWrapper"}>
+                <div style={secLeft > TIME / 3 ? style1 : style2} className="timer"></div>
                 <div className="output">{out}</div>
                 <div className="input">{inp}</div>
             </div>
@@ -59,4 +81,4 @@ function Survival({ max, selected }: configProps) {
     );
 }
 
-export default Survival;
+export default Time;

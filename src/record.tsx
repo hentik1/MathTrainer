@@ -1,6 +1,6 @@
 import React from 'react';
 import { useState } from 'react';
-import './menu.css';
+import './app.css';
 
 
 function Record() {

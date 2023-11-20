@@ -1,5 +1,6 @@
 import React from 'react';
 import { useState } from 'react';
+import './app.css';
 
 
 function Settings() {
@@ -12,7 +13,7 @@ function Settings() {
 
     return (
         <>
-            <div>
+            <div className="settings">
                 Settings
             </div>
         </>
