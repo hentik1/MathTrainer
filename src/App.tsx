@@ -1,8 +1,6 @@
-import React, { useState } from 'react';
-import './app.css';
-import Menu from './menu';
-import Settings from './settings';
-import Record from './record';
+import './App.css';
+import Menu from './Menu';
+import Settings from './Settings';
 
 function App() {
 
@@ -10,7 +8,6 @@ function App() {
     <>
       <Menu />
       <Settings />
-      <Record />
     </>
   );
 }

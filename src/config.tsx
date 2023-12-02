@@ -1,54 +1,40 @@
 import React from 'react';
 import { useState } from 'react';
 import './mode.css';
-import Survival from './survival';
-import Time from './time';
-import { modeProps, GameModeProps } from './interface';
+import Survival from './Survival';
+import Time from './Time';
+import { modeProps, GameModeProps, MenuProps } from './interface';
+import { findDifficulty } from './util';
 
-function Config({ selected, gamemode }: modeProps & GameModeProps) {
+function Config({ selected, gamemode, hideMenu }: modeProps & GameModeProps & MenuProps) {
 
-    const [clicked, setClicked] = useState(false);
-    const [max, setMax] = useState(0);
-    const [easy, setEasy] = useState(false);
-    const [medium, setMedium] = useState(false);
-    const [hard, setHard] = useState(false);
+    const [difficulty, setDifficulty] = useState(0);
 
-    const mode = gamemode;
-    const surv = <Survival max={max} selected={selected} />;
-    const time = <Time max={max} selected={selected} />;
+    const surv = <Survival difficulty={difficulty} selected={selected} hideMenu={hideMenu} />;
+    const time = <Time difficulty={difficulty} selected={selected} hideMenu={hideMenu} />;
 
-    const handleEasy = () => {
-        setMax(16);
-        setEasy(true);
-        setClicked(true);
+    if (!selected) {
+        return null;
     }
-    const handleMedium = () => {
-        setMax(99);
-        setMedium(true)
-        setClicked(true)
-    }
-    const handleHard = () => {
-        setMax(999);
-        setHard(true);
-        setClicked(true);
-    }
+    const difficulties: number[] | undefined = findDifficulty(selected)!;
+
 
     return (
         <>
-            <div className={clicked ? "configWrapper hidden" : "configWrapper"}>
-                <div className="plusEasy" onClick={handleEasy}>
-                    Easy
-                </div>
-                <div className="plusMedium" onClick={handleMedium}>
-                    Medium
-                </div>
-                <div className="plusHard" onClick={handleHard}>
-                    Hard
-                </div>
-            </div>
-            {easy ? easy && mode === "survival" ? surv : time : null}
-            {medium ? medium && mode === "survival" ? surv : time : null}
-            {hard ? hard && mode === "survival" ? surv : time : null}
+            {difficulty === 0 ?
+                <div className="configWrapper">
+                    <div className="plusEasy" onClick={() => setDifficulty(difficulties[0])}>
+                        Easy
+                    </div>
+                    <div className="plusMedium" onClick={() => setDifficulty(difficulties[1])}>
+                        Medium
+                    </div>
+                    <div className="plusHard" onClick={() => setDifficulty(difficulties[2])}>
+                        Hard
+                    </div>
+                </div >
+                : gamemode === "survival" ? surv : time
+            }
         </>
     );
 }

@@ -1,43 +1,47 @@
-import { useState, useContext } from 'react';
+import { useState } from 'react';
 import './mode.css';
 import { modeProps, MenuProps } from './interface';
-import Config from './config';
+import Config from './Config';
 
-function Mode({ selected, updateMenu }: modeProps & MenuProps) {
-    const [clicked, setClicked] = useState(false);
+function Mode({ selected, hideMenu }: modeProps & MenuProps) {
     const [gamemode, setGameMode] = useState("");
 
     const handleSurv = () => {
-        setClicked(!clicked);
-        updateMenu(false);
+        hideMenu();
         setGameMode("survival");
     }
 
     const handleTime = () => {
-        setClicked(!clicked);
-        updateMenu(false);
+        hideMenu();
         setGameMode("time");
     }
 
-
+    if (!selected) {
+        return null;
+    }
 
     return (
         <>
-            <div className={clicked ? "headerWrapper hidden" : "headerWrapper"}>
-                <div className="header2">
-                    {selected}
-                </div>
-            </div>
-            <div className={clicked ? "wrapper hidden" : "wrapper"}>
-                <div className="time" onClick={handleTime}>
-                    Time Control
-                </div>
-                <div className="surv" onClick={handleSurv}>
-                    Survival
-                </div>
-            </div>
-
-            {clicked ? <Config selected={selected} gamemode={gamemode} /> : null}
+            {gamemode === "" ?
+                <>
+                    <div className="headerWrapper">
+                        <div className="header2">
+                            {selected}
+                        </div>
+                    </div>
+                    <div className="wrapper">
+                        <div className="time" onClick={handleTime}>
+                            Time
+                            <br></br>
+                            Control
+                        </div>
+                        <div className="surv" onClick={handleSurv}>
+                            Survival
+                        </div>
+                    </div>
+                </>
+                : <Config selected={selected} gamemode={gamemode} hideMenu={hideMenu} />
+            }
         </>
     );
 }

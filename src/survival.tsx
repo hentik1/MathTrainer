@@ -1,43 +1,39 @@
-import React, { useState, useEffect, useMemo, } from 'react';
+import { useState, useEffect } from 'react';
 import './mode.css';
 import { evaluate } from 'mathjs';
-import Lose from './lose';
-import { isValidKey, selectedMode, periodConvert, symbolConvert, isValidInput } from './util';
-import { configProps } from './interface';
+import { setLocalStorage, isValidKey, backspace, selectedMode, periodConvert, symbolConvert, isValidInput } from './util';
+import { MenuProps, configProps } from './interface';
+import Lost from './Lost';
+import Numpad from './Numpad';
 
 
-function Survival({ max, selected }: configProps) {
-    const [inp, setInp] = useState('');
+function Survival({ difficulty, selected, hideMenu }: configProps & MenuProps) {
+    const [input, setInput] = useState('');
     const [score, setScore] = useState(0);
-    const [lost, setLost] = useState(false);
+    const [lostGame, setLostGame] = useState(false);
 
-    //const mode = selectedMode(selected);
+    const mode = selectedMode(selected);
 
-    const mode = useMemo(() => selectedMode(selected), []);
-
-    const [out, setOut] = useState(mode(max));
-
+    const [output, setOutput] = useState(mode(difficulty));
 
     useEffect(() => {
         const handleKey = (event: KeyboardEvent) => {
             let key = event.key;
 
             if (key === "Backspace") {
-                setInp((prevInp) => prevInp !== "" ? prevInp.substring(0, prevInp.length - 1) : "");
-            } else if (isValidKey(key) && inp.length < 7) {
-                setInp((prevInp) => prevInp + key);
-            } else if (key === "Enter" && isValidInput(inp) && inp.length < 7) {
-                console.log(evaluate(symbolConvert(out)));
-                console.log(periodConvert(inp));
-                if (evaluate(symbolConvert(out)) === periodConvert(inp)) {
-                    setInp("");
-                    setOut(mode(max));
+                setInput(backspace(input));
+            } else if (isValidKey(key) && input.length < 7) {
+                setInput((prevInput) => prevInput + key);
+            } else if (key === "Enter" && isValidInput(input)) {
+                if (evaluate(symbolConvert(output)) === periodConvert(input)) {
+                    setInput("");
+                    setOutput(mode(difficulty));
                     setScore((prevScore) => prevScore + 1);
                 } else {
-                    setLost(true);
+                    setLocalStorage("Survival", selected, difficulty, score);
+                    setInput("");
+                    setLostGame(true);
                 }
-            } else if (inp.length < 7) {
-                setInp((prevInp) => prevInp);
             }
         }
 
@@ -47,14 +43,18 @@ function Survival({ max, selected }: configProps) {
         };
     },);
 
+    const refreshGame = () => {
+        setLostGame(false);
+        setScore(0);
+        setOutput(mode(difficulty));
+    }
     return (
         <>
-            <div className={lost ? "modeWrapper hidden" : "modeWrapper"}>
-                <div className="output">{out}</div>
-                <div className="input">{inp}</div>
-            </div>
-
-            {lost ? <Lose score={score} max={max} /> : null}
+            {lostGame ? <Lost score={score} difficulty={difficulty} hideMenu={hideMenu} selected={selected} refreshGame={refreshGame} /> :
+                <div className="modeWrapper">
+                    <div className="output">{output}</div>
+                    <div className="input">{input}</div>
+                </div>}
         </>
     );
 }

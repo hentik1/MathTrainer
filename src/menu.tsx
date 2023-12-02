@@ -1,13 +1,9 @@
 import React, { useState } from 'react';
-import './app.css';
-import Mode from './mode';
+import './App.css';
+import Mode from './Mode';
 
 function Menu() {
     const [menu, setMenu] = useState(true);
-
-    const updateMenu = () => {
-        setMenu(!menu);
-    }
 
     const [plus, setPlus] = useState(false);
     const [minus, setMinus] = useState(false);
@@ -18,16 +14,14 @@ function Menu() {
     const modes = [plus, minus, multi, divide];
     const setModes = [setPlus, setMinus, setMulti, setDivide];
     const modesText = ["Addition", "Subtraction", "Multiplication", "Division"];
-    const mode = <Mode selected={selected} updateMenu={updateMenu} />;
 
     const handleMode = (number: number) => {
         setFalse();
-        for (let i = 0; i < modes.length; i++) {
-            if (i === number) {
-                setModes[i](!modes[i]);
-                setSelected(modesText[i]);
-            }
-        };
+        setModes[number](!modes[number]);
+        setSelected(modesText[number]);
+        if (selected === modesText[number]) {
+            setSelected("");
+        }
     }
 
     const setFalse = () => {
@@ -35,6 +29,10 @@ function Menu() {
         setMinus(false);
         setMulti(false);
         setDivide(false);
+    }
+
+    const hideMenu = () => {
+        setMenu(false);
     }
 
     return (
@@ -56,10 +54,8 @@ function Menu() {
                     </div>
                 </div>
             </div>
-            {plus ? mode : null}
-            {minus ? mode : null}
-            {multi ? mode : null}
-            {divide ? mode : null}
+
+            <Mode selected={selected} hideMenu={hideMenu} />
         </>
     );
 }

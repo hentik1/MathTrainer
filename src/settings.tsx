@@ -1,21 +1,35 @@
-import React from 'react';
-import { useState } from 'react';
-import './app.css';
+import React, { useState } from 'react';
+import './App.css';
+import Numpad from './Numpad';
 
 
 function Settings() {
 
-    const [clicked, setClicked] = useState(false);
+    const [toggle, setToggle] = useState(false);
+    const [numpad, setNumpad] = useState(false);
 
-    const handleSurvival = () => {
-        setClicked(!clicked);
+    const handleToggle = () => {
+        setToggle(!toggle);
+    }
+
+    const handleNumpad = () => {
+        setNumpad(!numpad);
     }
 
     return (
         <>
-            <div className="settings">
-                Settings
+            <div className={toggle ? "settings" : "settingsHidden"}>
+                <div className="toggle" onClick={handleToggle}>
+                    {toggle ? "×" : "|||"}
+                </div>
+
+                <div className={numpad ? "toggleNumpad selected" : "toggleNumpad"} onClick={handleNumpad}>
+                    <div>
+                        Numpad
+                    </div>
+                </div>
             </div>
+            {numpad && <Numpad />}
         </>
     );
 }

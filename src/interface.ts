@@ -3,15 +3,15 @@ export interface modeProps {
 }
 
 export interface configProps {
-    max: number;
+    difficulty: number;
     selected: string;
 }
 
 export interface MenuProps {
-    updateMenu: (setMenu: boolean) => void;
+    hideMenu: () => void;
 }
 
-export interface GameModeProps {
+export type GameModeProps = {
     gamemode: string;
 }
 

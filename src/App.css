@@ -15,8 +15,8 @@ body {
   top: 0%;
   background-color: rgb(24, 61, 61);
   padding: 10px;
-  width: 15%;
-  height: 100vh;
+  width: calc(150px + 7%);
+  height: 100%;
 }
 
 .menuHeader {
@@ -40,18 +40,106 @@ body {
   color: rgb(92, 131, 116);
 }
 
-.record {
+.settings {
+  display: flex;
   position: absolute;
-  left: 90vw;
-  top: 2vh;
-  width: 10vw;
-  height: 20vh;
+  left: calc(100% - (150px + 7%));
+  top: 0%;
+  width: calc(150px + 7%);
+  height: 100%;
+  background-color: rgb(24, 61, 61);
+  transition: 0.2s;
+  justify-content: center;
+  align-items: center;
 }
 
-.settings {
+.settingsHidden {
+  display: flex;
   position: absolute;
-  left: 80vw;
-  top: 2vh;
-  width: 10vw;
-  height: 20vh;
+  left: 95%;
+  top: 0%;
+  width: calc(150px + 7%);
+  height: 100%;
+  transition: 0.2s;
+  justify-content: center;
+  align-items: center;
+}
+
+.settingsHidden>.toggleNumpad {
+  font-size: 0px;
+  background-color: transparent;
+}
+
+.toggle {
+  position: absolute;
+  font-size: 50px;
+  width: 50px;
+  height: 50px;
+  transform: rotate(90deg);
+  margin: 10%;
+  font-weight: 600;
+  left: 0%;
+  top: 0%;
+}
+
+.toggle:hover {
+  cursor: pointer;
+  color: rgb(92, 131, 116);
+}
+
+.toggleNumpad {
+  font-size: 20px;
+  font-weight: 900;
+  height: 100px;
+  width: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgb(148, 172, 163);
+  border-radius: 5%;
+}
+
+.toggleNumpad:hover {
+  box-shadow: 0px 0px 2px 4px rgb(148, 172, 163);
+  transition: 0.1s;
+}
+
+.numpad {
+  position: absolute;
+  left: 70%;
+  top: 35%;
+  background-color: rgb(148, 172, 163);
+}
+
+.numpad>div {
+  display: flex;
+  flex-direction: row;
+}
+
+.row>div {
+  font-size: 30px;
+  font-weight: 200;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(100, 151, 132);
+  margin: 1px;
+  padding: 10px;
+}
+
+.row>div:hover {
+  color: rgb(24, 61, 61);
+}
+
+.row>.backspace {
+  width: 160px;
+}
+
+.row>.enter {
+  width: 160px;
+}
+
+.enter {
+  justify-content: flex-end;
 }
