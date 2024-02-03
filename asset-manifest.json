@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/mathtrainer/static/css/main.726d1c34.css",
+    "main.js": "/mathtrainer/static/js/main.2326b926.js",
+    "index.html": "/mathtrainer/index.html",
+    "main.726d1c34.css.map": "/mathtrainer/static/css/main.726d1c34.css.map",
+    "main.2326b926.js.map": "/mathtrainer/static/js/main.2326b926.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.726d1c34.css",
+    "static/js/main.2326b926.js"
+  ]
+}
