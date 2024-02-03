@@ -12,11 +12,6 @@ function Settings() {
         setToggle(!toggle);
     }
 
-    const handleStats = () => {
-
-    }
-
-
     return (
         <>
             <div className={toggle ? "settings" : "settingsHidden"}>

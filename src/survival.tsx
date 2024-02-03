@@ -8,7 +8,6 @@ function Survival({ difficulty, difficultyText, selected }: configProps & MenuPr
     const [input, setInput] = useState('');
     const [score, setScore] = useState(0);
     const [lostGame, setLostGame] = useState(false);
-    const numpad = localStorage.getItem("numpad");
 
     const mode = selectedMode(selected);
 

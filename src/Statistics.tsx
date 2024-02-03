@@ -13,8 +13,8 @@ function Statistics() {
     const [multi, setMulti] = useState(false);
     const [div, setDiv] = useState(false);
 
-    const gameNodes = [survival, time, total];
-    const gameNodesText = ["Survival", "Time", "Total"];
+    const gameModes = [survival, time, total];
+    const gameModesText = ["Survival", "Time", "Total"];
     const setGameModes = [setSurvival, setTime, setTotal];
     const [gameModeString, setGameModeString] = useState("");
     const handleToggle = (number: number) => {
@@ -25,8 +25,8 @@ function Statistics() {
         setSub(false);
         setMulti(false);
         setDiv(false);
-        setGameModes[number](!gameNodes[number]);
-        setGameModeString(gameNodesText[number]);
+        setGameModes[number](!gameModes[number]);
+        setGameModeString(gameModesText[number]);
     }
 
     const mode = [add, sub, multi, div];
@@ -102,7 +102,7 @@ function Statistics() {
                         </div>
                     </div> : null
                 }
-                {total ?
+                {total && localStorage.getItem("TotalSolved") != null ?
                     <div className="viewTotal">
                         You have solved {localStorage.getItem("TotalSolved")} problems
                     </div> : null

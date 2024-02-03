@@ -51,7 +51,7 @@ export const setLocalStorage = (mode: string, selected: string, difficulty: stri
 export const setTotalSolved = () => {
     const getItem = localStorage.getItem("TotalSolved");
     if (getItem === null) {
-        localStorage.setItem("TotalSolved", "0");
+        localStorage.setItem("TotalSolved", "1");
     } else {
         localStorage.setItem("TotalSolved", `${parseInt(getItem) + 1}`);
     }

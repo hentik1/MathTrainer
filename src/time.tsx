@@ -17,7 +17,6 @@ function Time({ difficulty, difficultyText, selected }: configProps & MenuProps)
     const [output, setOutput] = useState(mode(difficulty[0], difficulty[1]));
 
     const { secondsLeft, start, stop } = useCountdown();
-    const numpad = localStorage.getItem("numpad");
 
     useEffect(() => {
         start(TIME);

@@ -1,9 +1,6 @@
-import React, { useState } from 'react';
-import { MenuProps, configProps } from './interface';
+import React from 'react';
 
 function Lost({ score, refreshGame }: { score: number, refreshGame: () => void }) {
-
-    const [quit, setQuit] = useState(true);
 
     const handleQuit = () => {
         window.location.reload();
@@ -14,21 +11,17 @@ function Lost({ score, refreshGame }: { score: number, refreshGame: () => void }
     }
 
     return (
-        <>
-
-            {quit &&
-                <div className="lost">
-                    Score: {score}
-                    <div className="lostButton">
-                        <div className="quit" onClick={handleQuit}>
-                            Quit
-                        </div>
-                        <div className="retry" onClick={handleRetry}>
-                            Retry
-                        </div>
-                    </div>
-                </div>}
-        </>
+        <div className="lost">
+            Score: {score}
+            <div className="lostButton">
+                <div className="quit" onClick={handleQuit}>
+                    Quit
+                </div>
+                <div className="retry" onClick={handleRetry}>
+                    Retry
+                </div>
+            </div>
+        </div>
     );
 }
 
