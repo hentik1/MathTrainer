@@ -3,7 +3,8 @@ export interface modeProps {
 }
 
 export interface configProps {
-    difficulty: number;
+    difficulty: number[];
+    difficultyText: string;
     selected: string;
 }
 
@@ -14,4 +15,3 @@ export interface MenuProps {
 export type GameModeProps = {
     gamemode: string;
 }
-

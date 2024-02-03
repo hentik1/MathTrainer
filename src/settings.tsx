@@ -1,20 +1,21 @@
 import React, { useState } from 'react';
 import './App.css';
-import Numpad from './Numpad';
+import Statistics from './Statistics';
 
 
 function Settings() {
 
     const [toggle, setToggle] = useState(false);
-    const [numpad, setNumpad] = useState(false);
+    const [stats, setStats] = useState(false);
 
     const handleToggle = () => {
         setToggle(!toggle);
     }
 
-    const handleNumpad = () => {
-        setNumpad(!numpad);
+    const handleStats = () => {
+
     }
+
 
     return (
         <>
@@ -23,13 +24,13 @@ function Settings() {
                     {toggle ? "×" : "|||"}
                 </div>
 
-                <div className={numpad ? "toggleNumpad selected" : "toggleNumpad"} onClick={handleNumpad}>
+                <div className={stats ? "statsOn" : "statsOff"} onClick={() => setStats(!stats)}>
                     <div>
-                        Numpad
+                        {stats ? "Statistics On" : "Statistics Off"}
                     </div>
                 </div>
             </div>
-            {numpad && <Numpad />}
+            {stats ? <Statistics /> : null}
         </>
     );
 }

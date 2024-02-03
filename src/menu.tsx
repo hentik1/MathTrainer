@@ -13,7 +13,7 @@ function Menu() {
 
     const modes = [plus, minus, multi, divide];
     const setModes = [setPlus, setMinus, setMulti, setDivide];
-    const modesText = ["Addition", "Subtraction", "Multiplication", "Division"];
+    const modesText: string[] = ["Addition", "Subtraction", "Multiplication", "Division"];
 
     const handleMode = (number: number) => {
         setFalse();

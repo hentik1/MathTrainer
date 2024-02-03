@@ -1,9 +1,7 @@
 import React, { useState } from 'react';
 import { MenuProps, configProps } from './interface';
 
-import './mode.css';
-
-function Lost({ score, difficulty, hideMenu, refreshGame }: { score: number, difficulty: number, refreshGame: () => void } & MenuProps & configProps) {
+function Lost({ score, refreshGame }: { score: number, refreshGame: () => void }) {
 
     const [quit, setQuit] = useState(true);
 

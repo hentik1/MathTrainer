@@ -1,11 +1,11 @@
 import { useState, useEffect } from 'react';
 import { MenuProps, configProps } from './interface';
 import { evaluate } from 'mathjs';
-import { setLocalStorage, isValidKey, selectedMode, periodConvert, symbolConvert, isValidInput, backspace } from './util';
+import { setLocalStorage, setTotalSolved, isValidKey, selectedMode, periodConvert, symbolConvert, isValidInput, backspace } from './util';
 import Lost from './Lost';
 import useCountdown from './util';
 
-function Time({ difficulty, selected, hideMenu }: configProps & MenuProps) {
+function Time({ difficulty, difficultyText, selected }: configProps & MenuProps) {
     const TIME = 45;
     const [started, setStarted] = useState(false);
 
@@ -14,9 +14,10 @@ function Time({ difficulty, selected, hideMenu }: configProps & MenuProps) {
     const [lostGame, setLostGame] = useState(false);
 
     const mode = selectedMode(selected);
-    const [output, setOutput] = useState(mode(difficulty));
+    const [output, setOutput] = useState(mode(difficulty[0], difficulty[1]));
 
     const { secondsLeft, start, stop } = useCountdown();
+    const numpad = localStorage.getItem("numpad");
 
     useEffect(() => {
         start(TIME);
@@ -25,7 +26,7 @@ function Time({ difficulty, selected, hideMenu }: configProps & MenuProps) {
 
     useEffect(() => {
         if (secondsLeft <= 0 && started) {
-            setLocalStorage("Time", selected, difficulty, score);
+            setLocalStorage("Time", selected, difficultyText, score);
             setLostGame(true);
             setInput("");
         }
@@ -44,20 +45,21 @@ function Time({ difficulty, selected, hideMenu }: configProps & MenuProps) {
                     setInput("");
                     stop();
                     start(secondsLeft + 1);
-                    setOutput(mode(difficulty));
+                    setOutput(mode(difficulty[0], difficulty[1]));
                     setScore((prevScore) => prevScore + 1);
+                    setTotalSolved();
                 } else {
                     setInput("");
                     stop();
                     start(secondsLeft - 3);
-                    setOutput(mode(difficulty));
+                    setOutput(mode(difficulty[0], difficulty[1]));
                 }
             }
         }
 
-        document.addEventListener('keydown', handleKey, false);
+        if (!lostGame) document.addEventListener('keydown', handleKey, true);
         return () => {
-            document.removeEventListener('keydown', handleKey, false);
+            document.removeEventListener('keydown', handleKey, true);
         };
     },);
 
@@ -65,7 +67,7 @@ function Time({ difficulty, selected, hideMenu }: configProps & MenuProps) {
         start(TIME);
         setLostGame(false);
         setScore(0);
-        setOutput(mode(difficulty));
+        setOutput(mode(difficulty[0], difficulty[1]));
     }
 
     const greenTimeBox = {
@@ -81,10 +83,13 @@ function Time({ difficulty, selected, hideMenu }: configProps & MenuProps) {
         backgroundColor: "red",
         transition: "0.1s",
     }
+    if (!selected) {
+        return null;
+    }
 
     return (
         <>
-            {lostGame ? <Lost score={score} difficulty={difficulty} hideMenu={hideMenu} selected={selected} refreshGame={refreshGame} /> :
+            {lostGame ? <Lost score={score} refreshGame={refreshGame} /> :
                 <div className={lostGame ? "modeWrapper hidden" : "modeWrapper"}>
                     <div style={secondsLeft > TIME / 3 ? greenTimeBox : redTimeBox} className="timer"></div>
                     <div className="output">{output}</div>

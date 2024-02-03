@@ -1,20 +1,18 @@
 import { useState, useEffect } from 'react';
-import './mode.css';
 import { evaluate } from 'mathjs';
-import { setLocalStorage, isValidKey, backspace, selectedMode, periodConvert, symbolConvert, isValidInput } from './util';
+import { setLocalStorage, setTotalSolved, isValidKey, backspace, selectedMode, periodConvert, symbolConvert, isValidInput } from './util';
 import { MenuProps, configProps } from './interface';
 import Lost from './Lost';
-import Numpad from './Numpad';
 
-
-function Survival({ difficulty, selected, hideMenu }: configProps & MenuProps) {
+function Survival({ difficulty, difficultyText, selected }: configProps & MenuProps) {
     const [input, setInput] = useState('');
     const [score, setScore] = useState(0);
     const [lostGame, setLostGame] = useState(false);
+    const numpad = localStorage.getItem("numpad");
 
     const mode = selectedMode(selected);
 
-    const [output, setOutput] = useState(mode(difficulty));
+    const [output, setOutput] = useState(mode(difficulty[0], difficulty[1]));
 
     useEffect(() => {
         const handleKey = (event: KeyboardEvent) => {
@@ -27,17 +25,18 @@ function Survival({ difficulty, selected, hideMenu }: configProps & MenuProps) {
             } else if (key === "Enter" && isValidInput(input)) {
                 if (evaluate(symbolConvert(output)) === periodConvert(input)) {
                     setInput("");
-                    setOutput(mode(difficulty));
+                    setOutput(mode(difficulty[0], difficulty[1]));
                     setScore((prevScore) => prevScore + 1);
+                    setTotalSolved();
                 } else {
-                    setLocalStorage("Survival", selected, difficulty, score);
+                    setLocalStorage("Survival", selected, difficultyText, score);
                     setInput("");
                     setLostGame(true);
                 }
             }
         }
 
-        document.addEventListener('keydown', handleKey, true);
+        if (!lostGame) document.addEventListener('keydown', handleKey, true);
         return () => {
             document.removeEventListener('keydown', handleKey, true);
         };
@@ -46,15 +45,19 @@ function Survival({ difficulty, selected, hideMenu }: configProps & MenuProps) {
     const refreshGame = () => {
         setLostGame(false);
         setScore(0);
-        setOutput(mode(difficulty));
+        setOutput(mode(difficulty[0], difficulty[1]));
+    }
+    if (!selected) {
+        return null;
     }
     return (
         <>
-            {lostGame ? <Lost score={score} difficulty={difficulty} hideMenu={hideMenu} selected={selected} refreshGame={refreshGame} /> :
+            {lostGame ? <Lost score={score} refreshGame={refreshGame} /> :
                 <div className="modeWrapper">
                     <div className="output">{output}</div>
                     <div className="input">{input}</div>
-                </div>}
+                </div>
+            }
         </>
     );
 }

@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import './mode.css';
 import { modeProps, MenuProps } from './interface';
 import Config from './Config';
 
@@ -31,9 +30,7 @@ function Mode({ selected, hideMenu }: modeProps & MenuProps) {
                     </div>
                     <div className="wrapper">
                         <div className="time" onClick={handleTime}>
-                            Time
-                            <br></br>
-                            Control
+                            Time Control
                         </div>
                         <div className="surv" onClick={handleSurv}>
                             Survival
