@@ -22,7 +22,7 @@ function Mode({ selected, hideMenu }: modeProps & MenuProps) {
     return (
         <>
             {gamemode === "" ?
-                <>
+                <div className="modeWrapper">
                     <div className="headerWrapper">
                         <div className="header2">
                             {selected}
@@ -36,7 +36,7 @@ function Mode({ selected, hideMenu }: modeProps & MenuProps) {
                             Survival
                         </div>
                     </div>
-                </>
+                </div>
                 : <Config selected={selected} gamemode={gamemode} hideMenu={hideMenu} />
             }
         </>

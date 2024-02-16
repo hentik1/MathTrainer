@@ -6,9 +6,9 @@ import Lost from './Lost';
 import useCountdown from './util';
 
 function Time({ difficulty, difficultyText, selected }: configProps & MenuProps) {
-    const TIME = 45;
-    const [started, setStarted] = useState(false);
+    const TIME = 45
 
+    const [started, setStarted] = useState(false);
     const [input, setInput] = useState('');
     const [score, setScore] = useState(0);
     const [lostGame, setLostGame] = useState(false);
