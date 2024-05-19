@@ -1,13 +1,11 @@
-import './App.css';
-import Menu from './Menu';
-import Settings from './Settings';
+import Menu from "./Menu";
+import Keypad from "./Keypad";
+import Settings from "./Settings";
 
 function App() {
-
   return (
     <>
       <Menu />
-      <Settings />
     </>
   );
 }

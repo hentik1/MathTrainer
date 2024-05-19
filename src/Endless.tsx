@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import { evaluate } from "mathjs";
 import {
-  setLocalStorage,
   setTotalSolved,
   isValidKey,
   backspace,
@@ -11,24 +10,26 @@ import {
   isValidInput,
 } from "./util";
 import { MenuProps, configProps } from "./interface";
-import Lost from "./Lost";
 import Keypad from "./Keypad";
 
-function Survival({
+function Endless({
   difficulty,
   difficultyText,
   selected,
   reverse,
 }: configProps & MenuProps) {
   const [input, setInput] = useState("");
-  const [score, setScore] = useState(0);
-  const [lostGame, setLostGame] = useState(false);
+  const [correct, setCorrect] = useState(0);
+  const [wrong, setWrong] = useState(0);
 
   const mode = selectedMode(selected);
-
   const [output, setOutput] = useState(
     mode(difficulty[0], difficulty[1], reverse)
   );
+
+  const handleQuit = () => {
+    window.location.reload();
+  };
 
   useEffect(() => {
     const handleKey = (event: KeyboardEvent) => {
@@ -40,46 +41,46 @@ function Survival({
         setInput((prevInput) => prevInput + key);
       } else if (key === "Enter" && isValidInput(input)) {
         if (evaluate(output[1]) === periodConvert(input)) {
-          console.log(output[0]);
           setInput("");
           setOutput(mode(difficulty[0], difficulty[1], reverse));
-          setScore((prevScore) => prevScore + 1);
+          setCorrect((prevCorrect) => prevCorrect + 1);
           setTotalSolved();
         } else {
-          setLocalStorage("Survival", selected, difficultyText, score);
           setInput("");
-          setLostGame(true);
+          setOutput(mode(difficulty[0], difficulty[1], reverse));
+          setWrong((prevWrong) => prevWrong + 1);
         }
       }
     };
-
-    if (!lostGame) document.addEventListener("keydown", handleKey, true);
+    document.addEventListener("keydown", handleKey, true);
     return () => {
       document.removeEventListener("keydown", handleKey, true);
     };
   });
 
-  const refreshGame = () => {
-    setLostGame(false);
-    setScore(0);
-    setOutput(mode(difficulty[0], difficulty[1], reverse));
-  };
   if (!selected) {
     return null;
   }
   return (
     <>
-      {lostGame ? (
-        <Lost score={score} refreshGame={refreshGame} />
-      ) : (
+      <>
         <div className="mt-4 w-screen h-screen flex flex-col items-center text-6xl">
           <div className="p-4 w-50%">{symbolConvert(output[0])}</div>
           <div className="p-4 w-50%">{input}</div>
           {localStorage.getItem("keypadState") === "true" ? <Keypad /> : null}
         </div>
-      )}
+        <div className="m-4 absolute top-0 left-0 text-3xl">
+          <div className="p-4 text-green-400">{correct}</div>
+          <div className=" p-4 text-red-400">{wrong}</div>
+        </div>
+        <div className="m-4 absolute top-0 right-0 text-3xl">
+          <div className="m-10 hover:text-red-400" onClick={() => handleQuit()}>
+            Quit
+          </div>
+        </div>
+      </>
     </>
   );
 }
 
-export default Survival;
+export default Endless;
