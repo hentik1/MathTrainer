@@ -52,7 +52,7 @@ function Mode({ selected, hideMenu }: modeProps & MenuProps) {
             <div className="text-2xl font-black">{selected}</div>
             <div className="flex flex-row justify-center rounded-xl bg-teal-900 p-1">
               <div
-                className="p-2 m-1 w-28 h-24 rounde bg-teal-950 flex flex-col items-center justify-around group cursor-pointer hover:bg-teal-700 hover:stroke-slate-200"
+                className="p-2 m-1 w-28 h-24 rounded-xl bg-teal-950 flex flex-col items-center justify-around group cursor-pointer hover:bg-teal-700"
                 onClick={handleTime}
               >
                 <div className="">Time Control</div>
