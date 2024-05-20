@@ -47,19 +47,19 @@ function Mode({ selected, hideMenu }: modeProps & MenuProps) {
   return (
     <>
       {gamemode === "" ? (
-        <div className=" w-screen h-screen flex justify-center pl-52">
+        <div className=" w-svw h-svh flex justify-center pl-52">
           <div className="flex flex-col justify-center items-center">
             <div className="text-2xl font-black">{selected}</div>
             <div className="flex flex-row justify-center rounded-xl bg-teal-900 p-1">
               <div
-                className="p-2 m-1 w-28 h-24 rounded   bg-teal-950 flex flex-col items-center justify-around group cursor-pointer hover:bg-teal-700 hover:stroke-slate-200"
+                className="p-2 m-1 w-28 h-24 rounde bg-teal-950 flex flex-col items-center justify-around group cursor-pointer hover:bg-teal-700 hover:stroke-slate-200"
                 onClick={handleTime}
               >
                 <div className="">Time Control</div>
                 <TimeIcon />
               </div>
               <div
-                className="p-2 m-1 w-28 h-24  rounded-xl bg-teal-950 flex flex-col items-center justify-around group cursor-pointer hover:bg-teal-700"
+                className="p-2 m-1 w-28 h-24 rounded-xl bg-teal-950 flex flex-col items-center justify-around group cursor-pointer hover:bg-teal-700"
                 onClick={handleSurv}
               >
                 <div className="">Survival</div>
@@ -120,7 +120,7 @@ function Mode({ selected, hideMenu }: modeProps & MenuProps) {
           </div>
         </div>
       ) : difficultyText === "" ? (
-        <div className="w-screen h-screen flex flex-col items-center justify-center">
+        <div className="w-svw h-svh flex flex-col items-center justify-center">
           <div
             className="text-4xl p-2 m-4 hover:text-green-400"
             onClick={() => handleDifficulty(0)}

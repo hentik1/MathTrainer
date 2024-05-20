@@ -112,7 +112,7 @@ function CustomConfig() {
         {output}
       </div>
     </div> */
-    <div className="w-screen h-screen flex flex-col items-center justify-center text-3xl pl-52">
+    <div className="w-svw h-svh flex flex-col items-center justify-center text-3xl pl-52">
       <div>
         Coming soon
       </div>
