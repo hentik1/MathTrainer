@@ -121,10 +121,18 @@ function Time({
             className="h-10 absolute w-full"
           ></div>
           <div className="w-full h-full flex flex-col items-center text-6xl p-10">
-            <div className="flex flex-row justify-center">
-              <div className="p-4">{symbolConvert(output[0])}</div>
-              <div className="p-4">=</div>
-              <div className="p-4">{input}</div>
+            <div className="flex w-full justify-center">
+              <div className="p-4">
+                {reverse ? (
+                  <>
+                    {symbolConvert(output[0])} {input ? input : "?"} {output[2]}
+                  </>
+                ) : (
+                  <>
+                    {symbolConvert(output[0])} = {input}
+                  </>
+                )}
+              </div>
             </div>
             {localStorage.getItem("keypadState") === "true" ? <Keypad /> : null}
           </div>

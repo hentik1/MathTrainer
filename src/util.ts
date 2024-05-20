@@ -118,7 +118,8 @@ export const randomPlus = (min: number, max: number, reverse: boolean) => {
   let rand2 = randomInt(min, max);
   let returned = [];
   if (reverse) {
-    returned[0] = rand1 + " + ?  = " + (rand1 + rand2);
+    returned[0] = rand1 + " + ";
+    returned[2] = `= ${rand1 + rand2}`;
     returned[1] = `${rand2}`;
   } else {
     returned[0] = rand1 + " + " + rand2;
@@ -132,7 +133,8 @@ export const randomMinus = (min: number, max: number, reverse: boolean) => {
   let rand2 = randomInt(min, max);
   let returned = [];
   if (reverse) {
-    returned[0] = rand1 + " - ?  = " + (rand1 - rand2);
+    returned[0] = rand1 + " - ";
+    returned[2] = `= ${rand1 - rand2}`;
     returned[1] = `${rand2}`;
   } else {
     returned[0] = rand1 + " - " + rand2;
@@ -146,7 +148,8 @@ export const randomMulti = (min: number, max: number, reverse: boolean) => {
   let rand2 = randomInt(min, max);
   let returned = [];
   if (reverse) {
-    returned[0] = rand1 + " * ?  = " + rand1 * rand2;
+    returned[0] = rand1 + " * ";
+    returned[2] = `= ${rand1 * rand2}`;
     returned[1] = `${rand2}`;
   } else {
     returned[0] = rand1 + " * " + rand2;
@@ -166,7 +169,8 @@ export const randomDivide = (min: number, max: number, reverse: boolean) => {
   }
   let returned = [];
   if (reverse) {
-    returned[0] = rand1 + " / ?  = " + rand1 / rand2;
+    returned[0] = rand1 + " / ";
+    returned[2] = `= ${rand1 / rand2}`;
     returned[1] = `${rand2}`;
   } else {
     returned[0] = rand1 + " / " + rand2;
