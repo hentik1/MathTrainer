@@ -22,10 +22,7 @@ function Keypad() {
         <div className="keypad-keys" onClick={() => handleKey("9")}>
           9
         </div>
-        <div
-          className="keypad-keysHidden"
-          onClick={() => handleKey("")}
-        ></div>
+        <div className="keypad-keysHidden" onClick={() => handleKey("")}></div>
         <div className="keypad-keys" onClick={() => handleKey("Backspace")}>
           <BackspaceIcon />
         </div>
@@ -40,14 +37,8 @@ function Keypad() {
         <div className="keypad-keys" onClick={() => handleKey("6")}>
           6
         </div>
-        <div
-          className="keypad-keysHidden"
-          onClick={() => handleKey("")}
-        ></div>
-        <div
-          className="keypad-keysHidden"
-          onClick={() => handleKey("")}
-        ></div>
+        <div className="keypad-keysHidden" onClick={() => handleKey("")}></div>
+        <div className="keypad-keysHidden" onClick={() => handleKey("")}></div>
       </div>
       <div className="flex flex-row">
         <div className="keypad-keys" onClick={() => handleKey("1")}>
@@ -59,14 +50,8 @@ function Keypad() {
         <div className="keypad-keys" onClick={() => handleKey("3")}>
           3
         </div>
-        <div
-          className="keypad-keysHidden"
-          onClick={() => handleKey("")}
-        ></div>
-        <div
-          className="keypad-keysHidden"
-          onClick={() => handleKey("")}
-        ></div>
+        <div className="keypad-keysHidden" onClick={() => handleKey("")}></div>
+        <div className="keypad-keysHidden" onClick={() => handleKey("")}></div>
       </div>
       <div className="flex flex-row">
         <div className="keypad-keys" onClick={() => handleKey("0")}>
@@ -78,10 +63,7 @@ function Keypad() {
         <div className="keypad-keys" onClick={() => handleKey("-")}>
           -
         </div>
-        <div
-          className="keypad-keysHidden"
-          onClick={() => handleKey("")}
-        ></div>
+        <div className="keypad-keysHidden" onClick={() => handleKey("")}></div>
         <div className="keypad-keys" onClick={() => handleKey("Enter")}>
           <EnterIcon />
         </div>

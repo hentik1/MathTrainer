@@ -40,7 +40,7 @@ function CustomConfig() {
 
   return (
     /*
-    <div className="w-screen h-screen flex flex-col content-center justify-center text-3xl">
+    <div className="w-full h-full flex flex-col content-center justify-center text-3xl">
       <div className="flex flex-col  justify-center content-center">
         <div className="flex flex-col justify-center content-center">
           <div className="flex flex-row mx-auto">

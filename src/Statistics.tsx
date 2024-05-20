@@ -103,7 +103,7 @@ function Statistics() {
           </div>
         ) : null}
         {add || sub || multi || div ? (
-          <div className="flex flex-col m-4 text-xl">
+          <div className="flex flex-row m-4 text-xl">
             <div className="flex flex-row m-2">
               Easy: {getHighScore(gameModeString, modeString, "Easy")}
             </div>

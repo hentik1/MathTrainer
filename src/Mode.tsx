@@ -50,9 +50,9 @@ function Mode({ selected, hideMenu }: modeProps & MenuProps) {
         <div className=" w-screen h-screen flex justify-center pl-52">
           <div className="flex flex-col justify-center items-center">
             <div className="text-2xl font-black">{selected}</div>
-            <div className="flex flex-row justify-center rounded-xl bg-teal-900 p-2">
+            <div className="flex flex-row justify-center rounded-xl bg-teal-900 p-1">
               <div
-                className="p-2 m-1 w-28 h-24 rounded-xl bg-teal-950 flex flex-col items-center justify-around group cursor-pointer hover:bg-teal-700 hover:stroke-slate-200"
+                className="p-2 m-1 w-28 h-24 rounded   bg-teal-950 flex flex-col items-center justify-around group cursor-pointer hover:bg-teal-700 hover:stroke-slate-200"
                 onClick={handleTime}
               >
                 <div className="">Time Control</div>
@@ -121,13 +121,22 @@ function Mode({ selected, hideMenu }: modeProps & MenuProps) {
         </div>
       ) : difficultyText === "" ? (
         <div className="w-screen h-screen flex flex-col items-center justify-center">
-          <div className="text-6xl p-2 m-4 hover:text-green-400" onClick={() => handleDifficulty(0)}>
+          <div
+            className="text-4xl p-2 m-4 hover:text-green-400"
+            onClick={() => handleDifficulty(0)}
+          >
             Easy
           </div>
-          <div className="text-6xl p-2 m-4 hover:text-yellow-400" onClick={() => handleDifficulty(1)}>
+          <div
+            className="text-4xl p-2 m-4 hover:text-yellow-400"
+            onClick={() => handleDifficulty(1)}
+          >
             Medium
           </div>
-          <div className="text-6xl p-2 m-4 hover:text-red-400" onClick={() => handleDifficulty(2)}>
+          <div
+            className="text-4xl p-2 m-4 hover:text-red-400"
+            onClick={() => handleDifficulty(2)}
+          >
             Hard
           </div>
         </div>

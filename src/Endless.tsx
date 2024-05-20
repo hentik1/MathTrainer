@@ -64,9 +64,12 @@ function Endless({
   return (
     <>
       <>
-        <div className="mt-4 w-screen h-screen flex flex-col items-center text-6xl">
-          <div className="p-4 w-50%">{symbolConvert(output[0])}</div>
-          <div className="p-4 w-50%">{input}</div>
+        <div className="mt-4 w-full h-full flex flex-col items-center text-5xl">
+          <div className="flex flex-row">
+            <div className="p-4">{symbolConvert(output[0])}</div>
+            <div className="p-4">=</div>
+            <div className="p-4">{input}</div>
+          </div>
           {localStorage.getItem("keypadState") === "true" ? <Keypad /> : null}
         </div>
         <div className="m-4 absolute top-0 left-0 text-3xl">

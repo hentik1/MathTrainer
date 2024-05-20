@@ -18,16 +18,6 @@ code {
     monospace;
 }
 
-@keyframes survivalAnimation {
-  0% {
-    transform: scale(1.5);
-  }
-  100% {
-    transform: scale(1.5);
-  }
-}
-
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -62,10 +52,10 @@ code {
   }
 
   .keypad-keys {
-    @apply text-3xl w-8 flex justify-center items-center cursor-pointer bg-teal-900 m-px rounded;
+    @apply text-3xl w-12 flex justify-center items-center cursor-pointer bg-teal-900 m-px rounded;
   }
 
   .keypad-keysHidden {
-    @apply w-8 flex justify-center items-center m-px;
+    @apply w-12 flex justify-center items-center m-px;
   }
 }

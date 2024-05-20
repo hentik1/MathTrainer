@@ -171,7 +171,7 @@ function Menu() {
           </div>
         </div>
       ) : (
-        <div className="flex justify-center items-center flex-col h-screen w-full">
+        <div className="flex justify-center items-center flex-col h-full w-full">
           <div className="text-3xl font-black p-2">
             MathTrainer
             <sup className="text-base font-black p-2">v0.1</sup>

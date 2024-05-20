@@ -120,15 +120,12 @@ function Time({
             }
             className="h-10 absolute w-full"
           ></div>
-          <div
-            className={
-              lostGame
-                ? "hidden"
-                : "-z-50 w-screen h-screen flex flex-col items-center text-6xl p-10"
-            }
-          >
-            <div className="p-4 w-50%">{symbolConvert(output[0])}</div>
-            <div className="p-4 w-50%">{input}</div>
+          <div className="w-full h-full flex flex-col items-center text-6xl p-10">
+            <div className="flex flex-row justify-center">
+              <div className="p-4">{symbolConvert(output[0])}</div>
+              <div className="p-4">=</div>
+              <div className="p-4">{input}</div>
+            </div>
             {localStorage.getItem("keypadState") === "true" ? <Keypad /> : null}
           </div>
         </>

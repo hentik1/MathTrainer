@@ -8,6 +8,8 @@ module.exports = {
       keyframes: {
         survivalAnimation: {
           "0%": {transform: "scale(1)"},
+          "50%": {transform: "scale(1.5)"},
+          "75%": {transform: "scale(1)"},
           "100%": {transform: "scale(1.5)"},
         },
       },
