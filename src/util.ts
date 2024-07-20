@@ -37,9 +37,9 @@ const difficulties = {
     Hard: [10, 25],
   },
   Division: {
-    Easy: [2, 10],
-    Medium: [2, 25],
-    Hard: [10, 50],
+    Easy: [2, 25],
+    Medium: [2, 100],
+    Hard: [10, 500],
   },
 };
 
@@ -158,12 +158,14 @@ export const randomMulti = (min: number, max: number, reverse: boolean) => {
   return returned;
 };
 
+let randDiv: number[] = [];
+
 export const randomDivide = (min: number, max: number, reverse: boolean) => {
   let rand1 = randomInt(min, max);
   let rand2 = randomInt(min, max);
 
-  // generate new numbers if answer has more than two decimals or answer is 1
-  while (((rand1 / rand2) % 1).toString().length > 4 || rand1 / rand2 === 1) {
+  // No decimals
+  while (((rand1 / rand2) % 1).toString().length > 2 || rand1 / rand2 === 1) {
     rand1 = randomInt(min, max);
     rand2 = randomInt(min, max);
   }

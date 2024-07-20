@@ -24,7 +24,7 @@ code {
 
 @layer components {
   .menu-options {
-    @apply p-2 mt-2 text-2xl m-1 cursor-pointer rounded bg-teal-950 flex flex-row items-center justify-between hover:translate-x-2 duration-300;
+    @apply p-2 mt-2 text-2xl m-1 cursor-pointer rounded bg-teal-950 flex flex-row items-center justify-between hover:translate-x-2 duration-300 shadow-black shadow-sm;
   }
 
   .menu-icons {

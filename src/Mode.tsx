@@ -49,24 +49,24 @@ function Mode({ selected, hideMenu }: modeProps & MenuProps) {
       {gamemode === "" ? (
         <div className=" w-svw h-svh flex justify-center pl-52">
           <div className="flex flex-col justify-center items-center">
-            <div className="text-2xl font-black">{selected}</div>
+            <div className="text-2xl font-black p-2">{selected}</div>
             <div className="flex flex-row justify-center rounded-xl bg-teal-900 p-1">
               <div
-                className="p-2 m-1 w-28 h-24 rounded-xl bg-teal-950 flex flex-col items-center justify-around group cursor-pointer hover:bg-teal-700"
+                className="p-2 m-1 w-28 h-24 rounded-xl bg-teal-950 flex flex-col items-center justify-around group cursor-pointer hover:bg-teal-800 shadow-black shadow-sm"
                 onClick={handleTime}
               >
                 <div className="">Time Control</div>
                 <TimeIcon />
               </div>
               <div
-                className="p-2 m-1 w-28 h-24 rounded-xl bg-teal-950 flex flex-col items-center justify-around group cursor-pointer hover:bg-teal-700"
+                className="p-2 m-1 w-28 h-24 rounded-xl bg-teal-950 flex flex-col items-center justify-around group cursor-pointer hover:bg-teal-800 shadow-black shadow-sm"
                 onClick={handleSurv}
               >
                 <div className="">Survival</div>
                 <SurvIcon />
               </div>
               <div
-                className="p-2 m-1 w-28 h-24 rounded-xl bg-teal-950 flex flex-col items-center justify-around group cursor-pointer hover:bg-teal-700"
+                className="p-2 m-1 w-28 h-24 rounded-xl bg-teal-950 flex flex-col items-center justify-around group cursor-pointer hover:bg-teal-800 shadow-black shadow-sm"
                 onClick={handleEndless}
               >
                 <div className="">Endless</div>

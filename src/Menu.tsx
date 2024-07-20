@@ -5,6 +5,7 @@ import Settings from "./Settings";
 import CustomIcon from "./icons/CustomIcon";
 import PracticeIcon from "./icons/PracticeIcon";
 import SettingsIcon from "./icons/MiscIcon";
+import MinigameIcon from "./icons/MinigameIcon";
 import { settingsProps } from "./interface";
 
 function Menu() {
@@ -15,16 +16,18 @@ function Menu() {
   const [multi, setMulti] = useState(false);
   const [divide, setDivide] = useState(false);
   const [custom, setCustom] = useState(false);
+  const [minigames, setMinigames] = useState(false);
   const [practice, setPractice] = useState(false);
   const [settings, setSettings] = useState(false);
   const [selected, setSelected] = useState("");
 
-  const modes = [plus, minus, multi, divide, practice, custom, settings];
+  const modes = [plus, minus, multi, divide, minigames, practice, custom, settings];
   const setModes = [
     setPlus,
     setMinus,
     setMulti,
     setDivide,
+    setMinigames,
     setPractice,
     setCustom,
     setSettings,
@@ -34,6 +37,7 @@ function Menu() {
     "Subtraction",
     "Multiplication",
     "Division",
+    "Minigames",
     "Practice",
     "Custom",
     "Settings",
@@ -45,15 +49,6 @@ function Menu() {
     setSelected(modesText[number]);
     if (selected === modesText[number]) {
       setSelected("");
-    }
-  };
-
-  const handleSettings = () => {
-    setSettings(!settings);
-    if (settings) {
-      setSelected("");
-    } else {
-      setSelected("Settings");
     }
   };
 
@@ -134,11 +129,24 @@ function Menu() {
           </div>
           <div
             className={
-              practice
+              minigames
                 ? "menu-options bg-teal-700 translate-x-2 mt-8"
                 : "menu-options mt-8"
             }
             onClick={() => handleMode(4)}
+          >
+            <div className="menu-icons">
+              <MinigameIcon />
+            </div>
+            <div className="menu-text">Minigames</div>
+          </div>
+          <div
+            className={
+              practice
+                ? "menu-options bg-teal-700 translate-x-2"
+                : "menu-options"
+            }
+            onClick={() => handleMode(5)}
           >
             <div className="menu-icons">
               <PracticeIcon />
@@ -149,7 +157,7 @@ function Menu() {
             className={
               custom ? "menu-options bg-teal-700 translate-x-2" : "menu-options"
             }
-            onClick={() => handleMode(5)}
+            onClick={() => handleMode(6)}
           >
             <div className="menu-icons">
               <CustomIcon />
@@ -162,7 +170,7 @@ function Menu() {
                 ? "menu-options bg-teal-700 translate-x-2 mt-8"
                 : "menu-options mt-8"
             }
-            onClick={() => handleMode(6)}
+            onClick={() => handleMode(7)}
           >
             <div className="menu-icons">
               <SettingsIcon />
@@ -180,7 +188,9 @@ function Menu() {
         </div>
       )}
 
-      {selected === "Custom" ? (
+      {selected === "Minigames" ? (
+        <CustomConfig />
+      ) : selected === "Custom" ? (
         <CustomConfig />
       ) : selected === "Practice" ? (
         <CustomConfig />

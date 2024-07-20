@@ -35,7 +35,7 @@ function Settings(settings: settingsProps) {
           }
           onClick={() => handleStats()}
         >
-          <div className="p-1">{stats ? "Close Stats" : "View Stats"}</div>
+          <div className="p-1">View Stats</div>
         </div>
 
         <div
